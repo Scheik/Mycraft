@@ -1,21 +1,38 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Mycraft.Components;
+using System;
+using System.Linq;
+
 
 namespace Mycraft
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class MycraftGame : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Render3DComponent render3d;
 
-        public Game1()
+
+        public MycraftGame()
+            :base()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            this.Window.Title = "Mycraft";
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
+
+            this.IsMouseVisible = true;
+
+            render3d = new Render3DComponent(this);
+            render3d.DrawOrder = 1;
+            Components.Add(render3d);
+
         }
 
         /// <summary>
